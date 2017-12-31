@@ -20,9 +20,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-FROM openjdk:8
+FROM openjdk:8-alpine
 VOLUME /tmp
-ADD service-1.0.0-SNAPSHOT.jar service.jar
+ARG JAR_FILE
+ADD ${JAR_FILE} service.jar
 EXPOSE 8080
 RUN sh -c 'touch /service.jar'
 ENTRYPOINT exec java -Djava.security.egd=file:/dev/./urandom \
